@@ -22,19 +22,15 @@ def main():
     #   at 1, print "<number>: <line>" when the line contains args.pattern.
     #   If the --ignore-case flag was given, match without caring about upper/lower
     #   case (hint: compare the lowercased versions of both).
-    with open(args.filename, 'r') as file:
-        for linenum, line in enumerate(lines, start=1):
+    with open(args.filename) as file:
+        for linenum, line in enumerate(file, start=1):
+            line = line.rstrip("\n")
             if args.ignore_case:
                 if args.pattern.lower() in line.lower():
-                    print(f"{linenum}: {args.pattern}")
-
-            if args.pattern in line:
-                print(f"{linenum}: {args.pattern}")
-
-
-    
-
-
+                    print(f"{linenum}: {line}")
+            else:
+                if args.pattern in line:
+                    print(f"{linenum}: {line}")
 
 
 
